@@ -6,23 +6,47 @@
 <body>
 <?php
   if (isset($_POST['submit'])) {
+      $ok = true;
+      if (!isset($_POST['name']) || $_POST['name'] === ''){
+          $ok = false;
+      }
+      if (!isset($_POST['password']) || $_POST['password'] === ''){
+          $ok = false;
+      }
+      if (!isset($_POST['comments']) || $_POST['comments'] === ''){
+          $ok = false;
+      }
+      if (!isset($_POST['gender']) || $_POST['gender'] === ''){
+          $ok = false;
+      }
+      if (!isset($_POST['tc']) || $_POST['tc'] === ''){
+          $ok = false;
+      }
+      if (!isset($_POST['color']) || $_POST['color'] === ''){
+          $ok = false;
+      }
+      if (!isset($_POST['languages']) || is_array($_POST['languages']) count($_POST['languages']) === 0){
+          $ok = false;
+      }
       // process form
       // %s is a placeholder for string
-      printf('User name: %s
-      <br>Password: %s
-      <br>Gender: %s
-      <br>Color: %s
-      <br>Language(s): %s
-      <br>Comments: %s
-      <br>T&amp;C: %s',
-          // htmlspecialchars to escape special characters < > " &
-          htmlspecialchars($_POST['name']),
-          htmlspecialchars($_POST['password']),
-          htmlspecialchars($_POST['gender']),
-          htmlspecialchars($_POST['color']),
-          htmlspecialchars(implode(' ', $_POST['languages'])),
-          htmlspecialchars($_POST['comments']),
-          htmlspecialchars($_POST['tc']));
+      if($ok) {
+          printf('User name: %s
+          <br>Password: %s
+          <br>Gender: %s
+          <br>Color: %s
+          <br>Language(s): %s
+          <br>Comments: %s
+          <br>T&amp;C: %s',
+              // htmlspecialchars to escape special characters < > " &
+              htmlspecialchars($_POST['name']),
+              htmlspecialchars($_POST['password']),
+              htmlspecialchars($_POST['gender']),
+              htmlspecialchars($_POST['color']),
+              htmlspecialchars(implode(' ', $_POST['languages'])),
+              htmlspecialchars($_POST['comments']),
+              htmlspecialchars($_POST['tc']));
+      }
   }
 ?>
 <form method="post" action="">
@@ -33,6 +57,7 @@
         <input type="radio" name="gender" value="m">male<br>
     Favorite color:
         <select name="color">
+            <option value="">Please select</option>
             <option value="#f00">red</option>
             <option value="#0f0">green</option>
             <option value="#00f">blue</option>
