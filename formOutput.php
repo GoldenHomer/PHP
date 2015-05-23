@@ -7,6 +7,7 @@
 <?php
   if (isset($_POST['submit'])) {
       // process form
+      // %s is a placeholder for string
       printf('User name: %s
       <br>Password: %s
       <br>Gender: %s
@@ -14,6 +15,7 @@
       <br>Language(s): %s
       <br>Comments: %s
       <br>T&amp;C: %s',
+          // htmlspecialchars to escape special characters < > " &
           htmlspecialchars($_POST['name']),
           htmlspecialchars($_POST['password']),
           htmlspecialchars($_POST['gender']),
