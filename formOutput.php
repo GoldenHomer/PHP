@@ -72,5 +72,6 @@
     <input type="checkbox" name="tc" value="ok">I accept the T&C<br>
     <input type="submit" name="submit" value="Submit">
 </form>
-</body>
+</body
+Ayyyy 
 </html>
