@@ -88,8 +88,16 @@
     User name: <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>"><br>
     Password: <input type="password" name="password" value="<?php echo htmlspecialchars($password)><br>
     Gender:
-        <input type="radio" name="gender" value="f">female
-        <input type="radio" name="gender" value="m">male<br>
+        <input type="radio" name="gender" value="f"<?php 
+          if ($gender === 'f') {
+              echo ' checked';
+          }
+        ?>>female
+        <input type="radio" name="gender" value="m"<?php 
+          if ($gender === 'm') {
+              echo ' checked';
+          }
+        ?>>male<br>
     Favorite color:
         <select name="color">
             <option value="">Please select</option>
@@ -104,7 +112,11 @@
             <option value="it">Italian</option>
         </select><br>
     Comments: <textarea name="comments" value="<?php echo htmlspecialchars($comments)></textarea><br>
-    <input type="checkbox" name="tc" value="ok">I accept the T&C<br>
+    <input type="checkbox" name="tc" value="ok"<?php 
+      if($tc === 'ok') {
+        echo ' checked';
+      }
+    ?>>I accept the T&C<br>
     <input type="submit" name="submit" value="Submit">
 </form>
 </body
