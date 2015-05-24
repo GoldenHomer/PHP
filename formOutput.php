@@ -5,29 +5,64 @@
 </head>
 <body>
 <?php
+  $name = '';
+  $password = '';
+  $comments = '';
+  $gender = '';
+  $tc = '';
+  $color = '';
+  $languages = array();
   if (isset($_POST['submit'])) {
       $ok = true;
       if (!isset($_POST['name']) || $_POST['name'] === ''){
           $ok = false;
       }
+      else {
+          $name = $_POST['name'];
+      }
+      
       if (!isset($_POST['password']) || $_POST['password'] === ''){
           $ok = false;
       }
+      else {
+          $password = $_POST['password'];
+      }
+      
       if (!isset($_POST['comments']) || $_POST['comments'] === ''){
           $ok = false;
       }
+      else {
+          $comments = $_POST['comments'];
+      }
+      
       if (!isset($_POST['gender']) || $_POST['gender'] === ''){
           $ok = false;
       }
+      else {
+          $gender = $_POST['gender'];
+      }
+      
       if (!isset($_POST['tc']) || $_POST['tc'] === ''){
           $ok = false;
       }
+      else {
+          $tc = $_POST['tc'];
+      }
+      
       if (!isset($_POST['color']) || $_POST['color'] === ''){
           $ok = false;
       }
-      if (!isset($_POST['languages']) || is_array($_POST['languages']) count($_POST['languages']) === 0){
+      else {
+          $color = $_POST['color'];
+      }
+      
+      if (!isset($_POST['languages']) || !is_array($_POST['languages']) || count($_POST['languages']) === 0){
           $ok = false;
       }
+      else {
+          $languages = $_POST['languages'];
+      }
+      
       // process form
       // %s is a placeholder for string
       if($ok) {
@@ -50,8 +85,8 @@
   }
 ?>
 <form method="post" action="">
-    User name: <input type="text" name="name"><br>
-    Password: <input type="password" name="password"><br>
+    User name: <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>"><br>
+    Password: <input type="password" name="password" value="<?php echo htmlspecialchars($password)><br>
     Gender:
         <input type="radio" name="gender" value="f">female
         <input type="radio" name="gender" value="m">male<br>
@@ -68,7 +103,7 @@
             <option value="fr">French</option>
             <option value="it">Italian</option>
         </select><br>
-    Comments: <textarea name="comments"></textarea><br>
+    Comments: <textarea name="comments" value="<?php echo htmlspecialchars($comments)></textarea><br>
     <input type="checkbox" name="tc" value="ok">I accept the T&C<br>
     <input type="submit" name="submit" value="Submit">
 </form>
