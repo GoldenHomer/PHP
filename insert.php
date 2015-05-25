@@ -13,22 +13,35 @@
     $ok = true;
     if (!isset($_POST['name']) || $_POST['name'] === '') {
         $ok = false;
-    } else {
+    } 
+    else {
         $name = $_POST['name'];
     }
+    
     if (!isset($_POST['gender']) || $_POST['gender'] === '') {
         $ok = false;
-    } else {
+    } 
+    else {
         $gender = $_POST['gender'];
     }
+    
     if (!isset($_POST['color']) || $_POST['color'] === '') {
         $ok = false;
-    } else {
+    } 
+    else {
         $color = $_POST['color'];
     }
 
     if ($ok) {
         // add database code here
+        $db = mysqli_connect('localhost', 'root', '', 'php');
+        $sql = sprintf("INSERT INTO users (name, gender, color) VALUES ('%s', '%s', '%s')",
+        mysqli_real_escape_string($db, $name),
+        mysqli_real_escape_string($db, $gender),
+        mysqli_real_escape_string($db, $color));
+        mysqli_query($db, $sql);
+        mysqli_close($db);
+        echo '<p>User added</p>'
     }
   }
 ?>
