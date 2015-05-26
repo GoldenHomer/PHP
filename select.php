@@ -18,6 +18,7 @@
             htmlspecialchars($row['name']),
             htmlspecialchars($row['gender']),
             htmlspecialchars($row['id']),
+            htmlspecialchars($row['id'])
           );
       }
       mysqli_close($db);
