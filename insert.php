@@ -43,10 +43,12 @@
     }
 
     if ($ok) {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         // add database code here
         $db = mysqli_connect('localhost', 'root', '', 'php');
-        $sql = sprintf("INSERT INTO users (name, gender, color) VALUES ('%s', '%s', '%s')",
+        $sql = sprintf("INSERT INTO users (name, password, gender, color) VALUES ('%s','%s' ,'%s', '%s')",
         mysqli_real_escape_string($db, $name),
+        mysqli_real_escape_string($db, $hash), // NO, not the clear text password value.
         mysqli_real_escape_string($db, $gender),
         mysqli_real_escape_string($db, $color));
         mysqli_query($db, $sql);
