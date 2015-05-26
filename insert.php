@@ -8,6 +8,7 @@
   readfile('navigation.html');
   
   $name = '';
+  $password = '';
   $gender = '';
   $color = '';
 
@@ -18,6 +19,13 @@
     } 
     else {
         $name = $_POST['name'];
+    }
+    
+    if (!isset($_POST['password']) || $_POST['password'] === '') {
+        $ok = false;
+    } 
+    else {
+        $name = $_POST['password'];
     }
     
     if (!isset($_POST['gender']) || $_POST['gender'] === '') {
@@ -51,6 +59,8 @@
     User name: <input type="text" name="name" value="<?php
         echo htmlspecialchars($name);
     ?>"><br>
+    Password: <input type="password" name="password" value="<?php echo htmlspecialchars($name); ?>">
+    <br>
     Gender:
         <input type="radio" name="gender" value="f"<?php
             if ($gender === 'f') {
