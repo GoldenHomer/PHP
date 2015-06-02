@@ -7,11 +7,11 @@
   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
   
   // Then validate it.
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo("$email is a valid email address");
   } 
-  
+
   else {
-    echo("$email is not a valid email address");
+    echo("$email is not a valid email address. Please enter a valid email address.");
   }
 ?>
