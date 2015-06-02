@@ -1,7 +1,7 @@
 // This file has nothing to do with the other files. I just wanted to file it under this repo.
 
 <?php
-  $email = "john.doe@example.com"; // Take student email value.
+  $email =  $_POST['email']; // Take student email value.
   
   // Remove all illegal characters from email
   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
