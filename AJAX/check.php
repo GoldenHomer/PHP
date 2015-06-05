@@ -33,6 +33,6 @@
 	}
 }
 
-	echo $alert === "" ? "Nothing available" : $alert;
+	echo $alert === "" ? "No match" : $alert;
 
 ?>
