@@ -139,20 +139,25 @@
 			}
 		</script>
 		<script>
-			function check4Dup(int) {
-				if(str.toString().length === 0){
-					document.getElementById("alert").innerHTML = "";
+			function check4Dup(str) {
+				if (str.toString().length == 0){
+					console.log("empty!");
 					return;
 				}
 				
 				else {
+					// Below isn't working. Results in a 500 error and not 200 as expected.
 					var xmlhttp = new XMLHttpRequest();
 					xmlhttp.onreadystatechange = function() {
 						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-							document.getElementById("alert").xmlhttp.responseText;
+							console.log("Are you there yet?");
+							document.getElementById("alert").innerHTML = xmlhttp.responseText;
+						}
+						else if (xmlhttp.status == 500) {
+							console.log("can't do it captain. don't have dee power.");
 						}
 					}
-					xmlhttp.open("GET", "check.php?q=" + int.toString(), true);
+					xmlhttp.open("GET", "check.php?q=" + str.toString(), true); // Want to request asynchronously, so use value true.
 					xmlhttp.send();
 				}
 			}
