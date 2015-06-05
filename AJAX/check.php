@@ -1,11 +1,10 @@
 <?php
   function console( $data ) {
 
-		if ( is_array( $data ) )
-			$output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-		else
-			$output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
+	if ( is_array( $data ) )
+		$output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+	else
+		$output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
 		echo $output;
 	}
 	
@@ -22,17 +21,17 @@
   $alert = "";
   
   if ($q !== "") {
-		foreach($positions as $positon) {
-			if($positon == $q){
-				$alert = $position;
-				echo "There's a duplicate position of that number!!";
-			}
-			else {
-				$alert .= ", $position";
-				echo "The position number is available.";
-			}
+	foreach($positions as $positon) {
+		if($positon == $q){
+			$alert = $position;
+			echo "There's a duplicate position of that number!!";
+		}
+		else {
+			$alert .= ", $position";
+			echo "The position number is available.";
 		}
 	}
+}
 
 	echo $alert === "" ? "Nothing available" : $alert;
 
