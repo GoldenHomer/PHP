@@ -9,13 +9,9 @@
 
 	$alert = "";
 	
-	echo $positions[39];
-	
 	if ($q !== "") {
 		if(strlen($q) == 2) {
-			//foreach($positions as $positon) {
-			$length = count($positions);
-			for($i = 0; $i < $length; $i++) {
+			foreach($positions as $positon) {
 				if($positions[$i] == $q) {
 					$alert = "<h2 style='color: red;'>Position number already exists.</h2>";
 				}
@@ -30,6 +26,5 @@
 	
 	// Notes: $q is of type string, $length is being calculated correctly, each element in $positions array is a string.
 	// if ($positions[2] == $q) {echo "true";} else {echo "false";} returns true when I enter 14 in the Position Number text field
-	// The last position number to be added from add.php checks out as true, 
-	// but add a different number and that one returns true but the previous number returns false!
+	// The last position number in the text field returns true for the if statement in line 20, but false for the rest.
 ?>
