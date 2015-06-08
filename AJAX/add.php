@@ -52,13 +52,6 @@
 		<div id="masthead">
 
 			<a href="../../../../index.php" id="logo" class="imgswap" title="Home" name="top">Texas Tech University Libraries</a>
-		
-			<form action="http://google.ttu.edu/search" method="get" id="search-box" style="margin-bottom: 0"><label for="q"></label>
-				<input id="q" type="text" name="q" value="Search Library Website" onfocus="this.value=''"/><input type="hidden" name="site" value="Library" />
-				<input type="hidden" name="client" value="texas_tech" /><input type="hidden" name="proxystylesheet" value="styles/ttuSearch.css" />
-				<input type="hidden" name="output" value="xml_no_dtd" /><input type="hidden" name="restrict" value="" />
-				<input class="button" type="image" name="submit" src="../../../../styles/images/search-arrow.gif" alt="Search" />
-			</form>
 
 		</div>
 
