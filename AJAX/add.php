@@ -1,5 +1,9 @@
 <?php
-
+	require('includes/include.php');
+	if(!isset($_SESSION['eRaiderUsername'])){
+	echo 'Not authorized.';
+	exit;
+	}
 	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 	header("Cache-Control: post-check=0, pre-check=0", false);
 	header("Pragma: no-cache");
@@ -16,24 +20,24 @@
 		<link type="text/css" media="print" rel="stylesheet" href="../../../../styles/ttuPrint.css" />
 		<link rel="shortcut icon" href="../../../../styles/images/favicon.ico" />
 		<link type="text/css" media="all" rel="stylesheet" href="styles/hmea.css" />
-		<link rel="stylesheet" type="text/css" href="sweetalert.css">
+		<link rel="stylesheet" type="text/css" href="sweetAlert/sweetalert.css">
 		
 		<!--[if lte IE 6]>
-					<link rel="stylesheet" type="text/css" href="../../styles/ie.css" />
-				<![endif]-->
+		<link rel="stylesheet" type="text/css" href="../../styles/ie.css" />
+		<![endif]-->
 		
 		<!--nav scripts-->
-				<style type="text/css">
+		<style type="text/css">
 		<!--
 		.style1 {color: #FF0000}
 		.style3 {font-size: 15px}
 		.style5 {color: #000000}
 		.style11 {color: #FF3333}
 		-->
-				</style>
+		</style>
 		<script src="../../../../scripts/LeftNav.js" type="text/javascript"></script>
 		<script src="../../../../scripts/TopNav.js" type="text/javascript"></script>
-    </head>
+	</head>
 	<body>
 		<!-- **ADA LINKS** -->
 		
@@ -60,8 +64,11 @@
 
 		<div id="topSubjectBanner-employment" class="topSubjectBanner"></div> 
 	<!-- LEFT HAND NAVIGATION BAR -->
-			
+
+		<?php include("../../../../includes/leftNav.html"); ?>         
+		
 		<div id="topmneu-c">
+		<?php include("../../../../includes/topNav.html"); ?>
 		</div>
 
 		<a name="pageContent"></a> 
@@ -75,7 +82,7 @@
 		<form action="add-do.php" name="form" method="post" onsubmit="return ValidateEmail(document.form.email)"> 
 			<label for="position" class="text-hmea">Position Number:</label>
 			<input name="position" type="text" size="4" maxlength="3" class="input-hmea" onkeyup="check4Dup(this.value)" required/>
-			<p>Alert: <span id="alert"></span></p>
+			<p id="alert"></p>
 				<br />
 				<br />
 			<label for="email" class="text-hmea">E-mail Address:</label>&nbsp;&nbsp;
@@ -88,57 +95,38 @@
 		<form action="index.php" method="post">
 			<input type="submit" value="BACK" class="btn-add" />
 		</form><br /><br />
-	
+		
+		<?php  eRaiderShowSignoutButton();  ?>
 		</div>
 		<!--end content-->        
 		
 		</div>
-		
-		<?php
-			/* $lines = file('mgrdb.txt');
-			$positions = [];
-			foreach($lines as $line) {
-				// printf("%02d\n",$line);
-				$positions[] = substr($line, 0, 2);
-			}
-			
-			foreach($positions as $position){
-				//echo "$position <br>";
-			}
-	
-			
-			function check4DupPositions(){
-				foreach($positions as $position){
-					if($position[$i] == $int ){
-						echo "There's a duplicate position of that number!!";
-					}
-					else {
-						echo "Oh, you're good to go...";
-					}
-				}
-			}
-			*/
-		?>
+		<?php include("../../../../includes/footer.html"); ?>
 		
 		<script src="../../../../scripts/LeftNav.js" type="text/javascript"></script>
 		<script src="../../../../scripts/TopNav.js" type="text/javascript"></script>
-		<script src="sweetalert.min.js"></script>
+		<script src="sweetAlert/sweetalert.min.js"></script>
 		<script>
 			function ValidateEmail(input){
 				var emailFormat = /.+(@ttu.edu)/;
 				
 				if(input.value.match(emailFormat)){
-					alert("Emailed matched @ttu.edu format");
+					swal({
+						title: "Success",
+						text:"Submission was successful.",
+						timer: 5000,
+						showConfirmButton: false
+					});
 					return true;
 				}
 				else {
-					alert("Bummer...");
+					swal("Error", "You entered an invalid email address.", "error");
 					event.preventDefault();
+					document.form.email.focus();
 					return false;
 				}
 			}
-		</script>
-		<script>
+			
 			function check4Dup(str) {
 				if (str.toString().length == 0){
 					console.log("empty!");
@@ -146,15 +134,10 @@
 				}
 				
 				else {
-					// Below isn't working. Results in a 500 error and not 200 as expected.
 					var xmlhttp = new XMLHttpRequest();
 					xmlhttp.onreadystatechange = function() {
 						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-							console.log("Are you there yet?");
 							document.getElementById("alert").innerHTML = xmlhttp.responseText;
-						}
-						else if (xmlhttp.status == 500) {
-							console.log("can't do it captain. don't have dee power.");
 						}
 					}
 					xmlhttp.open("GET", "check.php?q=" + str.toString(), true); // Want to request asynchronously, so use value true.
