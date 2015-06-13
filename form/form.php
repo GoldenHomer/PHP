@@ -34,7 +34,7 @@ if (isset($_POST['send'])) {
 	    <p>
 	        <label for="email">Email:
 	        <?php if ($missing && in_array('email', $missing)) { ?>
-	        <span class="warning">Please enter your email address</span>
+	        <span class="warning">Enter your email address</span>
 	        <?php } ?>
 	        </label>
 	        <input type="text" name="email" id="email">
