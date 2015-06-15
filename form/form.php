@@ -6,6 +6,8 @@ if (isset($_POST['send'])) {
 	$subject = 'Feedback from contact form';
 	$expected = array('name', 'email', 'comments');
 	$required = array('name', 'comments');
+	$headers = "From: webmaster@example.com";
+	$headers .= "Content-type: text/plain; charset=utf-8";
 	require './includes/mail_process.php';
 }
 ?>
