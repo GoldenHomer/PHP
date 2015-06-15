@@ -40,3 +40,22 @@ if (!$suspect && !empty($email)) {
 		$errors['email'] = true;
 	}
 }
+
+if(!$suspect && !$missing && !$errors) {
+	$message = '';
+	foreach ($expected as $item) {
+		if (isset($$item) && !empty($$item)) {
+			$val = $item;
+		}
+		else {
+			$val = 'Not selected';
+		}
+		
+		if(is_array($val)) {
+			$val = implode (', ', $val);
+		}
+		
+		$item = str_replace(array('_', '-'), ' ', $item);
+		$message .= ucfirst($item). ": $val\r\n\r\n";
+	}
+}
