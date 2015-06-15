@@ -35,7 +35,8 @@ if (!$suspect && !empty($email)) {
 	$validemail = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 	if ($validemail) {
 		$headers .= "\r\nReply-to: $validemail";
-	} else {
+	} 
+	else {
 		$errors['email'] = true;
 	}
 }
