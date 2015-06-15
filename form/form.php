@@ -8,7 +8,13 @@ if (isset($_POST['send'])) {
 	$required = array('name', 'comments');
 	$headers = "From: webmaster@example.com";
 	$headers .= "Content-type: text/plain; charset=utf-8";
+	$authenticate = '-fme@example.com';
 	require './includes/mail_process.php';
+	
+	if($mailSent){
+		header('Location: thanks.php');
+		exit;
+	}
 }
 ?>
 <!DOCTYPE HTML>
@@ -21,7 +27,9 @@ if (isset($_POST['send'])) {
 	
 <body>
 	<h1>Contact Us</h1>
-	<?php if ($errors || $missing) { ?>
+	<?php if(($_POST && $suspect) || ($_POST && isset($errors['mailfail']))) {?>
+	<p class="warning">Sorry, your mail could not be sent.</p>
+	<?php } elseif ($errors || $missing) { ?>
 	<p class="warning">Please fix the item(s) indicated.</p>
 	<?php }?>
 	<form name="contact" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -53,13 +61,5 @@ if (isset($_POST['send'])) {
 	        <input type="submit" name="send" id="send" value="Send Comments">
 	    </p>
 	</form>
-<pre>
-	<?php 
-		if ($_POST && $mailSent) {
-			echo htmlentities($message, ENT_COMPAT, 'utf-8');
-			echo 'Headers: '.htmlentities($headers, ENT_COMPAT, 'utf-8');
-		}
-	?>
-</pre>
 </body>
 </html>
