@@ -58,4 +58,7 @@ if(!$suspect && !$missing && !$errors) {
 		$item = str_replace(array('_', '-'), ' ', $item);
 		$message .= ucfirst($item). ": $val\r\n\r\n";
 	}
+	$message = wordwrap($message, 70);
+	
+	$mailSent = true;
 }
